@@ -1,0 +1,17 @@
+{
+    "pair": {
+        "authorization": "Authenticate with Ring",
+        "authorization_explanation": "Please go to settings and give Homey access to your Ring devices."
+    },
+    "settings": {
+        "title": "Ring Settings",
+        "intro": "Before Homey can add Ring products we need authentication.",
+        "auth": {
+            "header": "Ring Authentication Credentials",
+            "user": "Email",
+            "pass": "Password",
+            "authenticate": "Authenticate",
+            "revoke": "Revoke Authentication"
+        }
+    }
+}

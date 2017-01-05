@@ -1,0 +1,17 @@
+{
+    "pair": {
+        "authorization": "Authenticeer met Ring",
+        "authorization_explanation": "Ga naar instellingen om Homey toegang tot je Ring apparaten te geven."
+    },
+    "settings": {
+        "title": "Ring Instellingen",
+        "intro": "Voordat Homey Ring producten kan toevoegen moet er autorisatie gegeven worden.",
+        "auth": {
+            "header": "Ring Autorisatie Gegevens",
+            "user": "Email",
+            "pass": "Wachtwoord",
+            "authenticate": "Autoriseer",
+            "revoke": "Verwijder autorisatie"
+        }
+    }
+}

@@ -1,0 +1,53 @@
+{
+    "id": "com.ring",
+    "name": {
+        "en": "Ring"
+    },
+    "version": "1.0.0",
+    "compatibility": "1.x",
+    "author": {
+        "name": "Dennie de Groot",
+        "email": "mail@denniedegroot.nl",
+        "website": "https://denniedegroot.nl"
+    },
+    "description": {
+        "en": "Ring support for Homey",
+        "nl": "Ring ondersteuning voor Homey"
+    },
+    "images": {
+        "large": "./assets/images/large.jpg",
+        "small": "./assets/images/small.jpg"
+    },
+    "category": "appliances",
+    "drivers": [
+        {
+            "id": "doorbell",
+            "name": {
+                "en": "Ring Video Doorbell",
+                "nl": "Ring Video Doorbell"
+            },
+            "images": {
+                "large": "./drivers/doorbell/assets/images/large.jpg",
+                "small": "./drivers/doorbell/assets/images/small.jpg"
+            },
+            "class": "sensor",
+            "capabilities": [ "alarm_generic", "alarm_motion" ],
+            "pair": [
+                {
+                    "id": "start"
+                },
+                {
+                    "id": "list_devices",
+                    "template": "list_devices",
+                    "navigation": {
+                        "next": "add_devices"
+                    }
+                },
+                {
+                    "id": "add_devices",
+                    "template": "add_devices"
+                }
+            ]
+        }
+    ]
+}
