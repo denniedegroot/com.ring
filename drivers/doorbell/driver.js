@@ -2,7 +2,6 @@
 
 const Driver = require('../../lib/Driver.js');
 
-const pollInterval = 2500;
 const statusTimeout = 10000;
 
 class DriverDoorbell extends Driver {
@@ -19,7 +18,50 @@ class DriverDoorbell extends Driver {
         this.capabilities.alarm_motion = {};
         this.capabilities.alarm_motion.get = this._onExportsCapabilitiesAlarmMotionGet.bind(this);
 
-        setInterval(this._refreshDevice.bind(this), pollInterval);
+        Homey.app.on('refresh_device', this._syncDevice.bind(this));
+        Homey.app.on('refresh_devices', this._syncDevices.bind(this));
+    }
+
+    _syncDevice(data) {
+        this.debug('_syncDevice', data);
+
+        data.forEach((device_data) => {
+            if (device_data.state === 'ringing') {
+                let device = this.getDevice({ id: device_data.doorbot_id });
+
+                if (device instanceof Error) {
+                    return this.error(device);
+                }
+
+                if (device_data.kind === 'ding') {
+                    device.state.alarm_generic = true;
+                    module.exports.realtime(device.data, 'alarm_generic', true);
+
+                    clearTimeout(device.timer.ding);
+                    device.timer.ding = setTimeout(() => { module.exports.realtime(device.data, 'alarm_generic', false); }, statusTimeout);
+                }
+
+                if (device_data.kind === 'motion' || device_data.motion) {
+                    device.state.alarm_motion = true;
+                    module.exports.realtime(device.data, 'alarm_motion', true);
+
+                    clearTimeout(device.timer.motion);
+                    device.timer.motion = setTimeout(() => { module.exports.realtime(device.data, 'alarm_motion', false); }, statusTimeout);
+                }
+            }
+        });
+    }
+
+    _syncDevices(data) {
+        this.debug('_syncDevices', data);
+
+        data.doorbots.forEach((device_data) => {
+            let device = this.getDevice({ id: device_data.id });
+
+            if (device instanceof Error) {
+                return this.error(device);
+            }
+        });
     }
 
     _onExportsPairListDevices(data, callback) {
@@ -66,44 +108,6 @@ class DriverDoorbell extends Driver {
 
         callback(null, device.state.alarm_motion);
     }
-
-    _refreshDevice() {
-        this.debug('_refreshDevice');
-
-        Homey.app.getRingDings((error, result) => {
-            if (error) {
-                return this.error(error);
-            }
-
-            result.forEach((data) => {
-                if (data.state === 'ringing') {
-                    let device = this.getDevice({ id: data.doorbot_id });
-
-                    if (device instanceof Error) {
-                        // return this.error(device);
-                        return;
-                    }
-
-                    if (data.kind === 'ding') {
-                        device.state.alarm_generic = true;
-                        module.exports.realtime(device.data, 'alarm_generic', true);
-
-                        clearTimeout(device.timer.ding);
-                        device.timer.ding = setTimeout(() => { module.exports.realtime(device.data, 'alarm_generic', false); }, statusTimeout);
-                    }
-
-                    if (data.kind === 'motion' || data.motion) {
-                        device.state.alarm_motion = true;
-                        module.exports.realtime(device.data, 'alarm_motion', true);
-
-                        clearTimeout(device.timer.motion);
-                        device.timer.motion = setTimeout(() => { module.exports.realtime(device.data, 'alarm_motion', false); }, statusTimeout);
-                    }
-                }
-            });
-        });
-    }
-
 }
 
 module.exports = new DriverDoorbell();
