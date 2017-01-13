@@ -1,0 +1,15 @@
+<script type="text/javascript">
+	$('#authentication_text' ).hide();
+
+	Homey.emit('authenticate', {}, function(err, result) {
+		console.log(err, result);
+		if (err || !result) {
+			Homey.setTitle(__( 'pair.authorization' ));
+			$('#authentication_text').show();
+		} else {
+			Homey.showView('list_devices');
+		}
+	});
+</script>
+
+<p id="authentication_text" data-i18n="pair.authorization_explanation"></p>
