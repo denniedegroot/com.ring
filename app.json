@@ -76,6 +76,34 @@
                     "template": "add_devices"
                 }
             ]
+        }, {
+            "id": "stickupcam",
+            "name": {
+                "en": "Stick Up Cam",
+                "nl": "Stick Up Cam"
+            },
+            "images": {
+                "large": "./drivers/chime/assets/images/large.jpg",
+                "small": "./drivers/chime/assets/images/small.jpg"
+            },
+            "class": "sensor",
+            "capabilities": [ "measure_battery", "alarm_motion" ],
+            "pair": [
+                {
+                    "id": "start"
+                },
+                {
+                    "id": "list_devices",
+                    "template": "list_devices",
+                    "navigation": {
+                        "next": "add_devices"
+                    }
+                },
+                {
+                    "id": "add_devices",
+                    "template": "add_devices"
+                }
+            ]
         }
     ],
     "flow": {
@@ -129,6 +157,44 @@
                         "name": "device",
                         "type": "device",
                         "filter": "driver_id=chime"
+                    }
+                ],
+                "tokens": [
+                    {
+                        "name": "old_firmware",
+                        "type": "string",
+                        "title": {
+                            "en": "old version",
+                            "nl": "oude versie"
+                        },
+                        "example": {
+                            "en": "1.0.0",
+                            "nl": "1.0.0"
+                        }
+                    }, {
+                        "name": "new_firmware",
+                        "type": "string",
+                        "title": {
+                            "en": "new version",
+                            "nl": "nieuwe versie"
+                        },
+                        "example": {
+                            "en": "2.0.0",
+                            "nl": "2.0.0"
+                        }
+                    }
+                ]
+            }, {
+                "id": "stickupcam_firmware_changed",
+                "title": {
+                    "en": "Firmware changed",
+                    "nl": "Firmware is veranderd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=stickupcam"
                     }
                 ],
                 "tokens": [
