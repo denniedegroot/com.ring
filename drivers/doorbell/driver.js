@@ -12,6 +12,9 @@ class DriverDoorbell extends Driver {
         this._deviceType = 'doorbell';
         this.capabilities = {};
 
+        this.capabilities.measure_battery = {};
+        this.capabilities.measure_battery.get = this._onExportsCapabilitiesBatteryGet.bind(this);
+
         this.capabilities.alarm_generic = {};
         this.capabilities.alarm_generic.get = this._onExportsCapabilitiesAlarmGenericGet.bind(this);
 
@@ -66,6 +69,9 @@ class DriverDoorbell extends Driver {
                 device.info = device_data;
             }
 
+            device.state.measure_battery = device_data.battery_life;
+            module.exports.realtime(device.data, 'measure_battery', device_data.battery_life);
+
             this.isFirmwareChanged(device_data, (error, result) => {
                 if (error) {
                     return this.error(error);
@@ -98,6 +104,18 @@ class DriverDoorbell extends Driver {
                 callback(null, foundDevices);
             });
         });
+    }
+
+    _onExportsCapabilitiesBatteryGet(device_data, callback) {
+        this.debug('_onExportsCapabilitiesBatteryGet', device_data.id);
+
+        let device = this.getDevice(device_data);
+
+        if (device instanceof Error) {
+            return callback(device);
+        }
+
+        callback(null, device.state.measure_battery);
     }
 
     _onExportsCapabilitiesAlarmGenericGet(device_data, callback) {

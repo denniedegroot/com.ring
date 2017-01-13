@@ -31,7 +31,7 @@
                 "small": "./drivers/doorbell/assets/images/small.jpg"
             },
             "class": "sensor",
-            "capabilities": [ "alarm_generic", "alarm_motion" ],
+            "capabilities": [ "alarm_generic", "alarm_motion", "measure_battery" ],
             "pair": [
                 {
                     "id": "start"
@@ -87,7 +87,7 @@
                 "small": "./drivers/chime/assets/images/small.jpg"
             },
             "class": "sensor",
-            "capabilities": [ "measure_battery", "alarm_motion" ],
+            "capabilities": [ "alarm_motion", "measure_battery" ],
             "pair": [
                 {
                     "id": "start"
