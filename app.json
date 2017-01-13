@@ -23,8 +23,8 @@
         {
             "id": "doorbell",
             "name": {
-                "en": "Ring Video Doorbell",
-                "nl": "Ring Video Doorbell"
+                "en": "Video Doorbell",
+                "nl": "Video Doorbell"
             },
             "images": {
                 "large": "./drivers/doorbell/assets/images/large.jpg",
@@ -49,5 +49,48 @@
                 }
             ]
         }
-    ]
+    ],
+    "flow": {
+        "triggers": [
+            {
+                "id": "doorbell_firmware_changed",
+                "title": {
+                    "en": "Firmware changed",
+                    "nl": "Firmware is veranderd"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=doorbell"
+                    }
+                ],
+                "tokens": [
+                    {
+                        "name": "old_firmware",
+                        "type": "string",
+                        "title": {
+                            "en": "old version",
+                            "nl": "oude versie"
+                        },
+                        "example": {
+                            "en": "1.0.0",
+                            "nl": "1.0.0"
+                        }
+                    }, {
+                        "name": "new_firmware",
+                        "type": "string",
+                        "title": {
+                            "en": "new version",
+                            "nl": "nieuwe versie"
+                        },
+                        "example": {
+                            "en": "2.0.0",
+                            "nl": "2.0.0"
+                        }
+                    }
+                ]
+            }
+        ]
+    }
 }

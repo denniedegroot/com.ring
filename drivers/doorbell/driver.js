@@ -61,6 +61,18 @@ class DriverDoorbell extends Driver {
             if (device instanceof Error) {
                 return this.error(device);
             }
+
+            if (device.info === null) {
+                device.info = device_data;
+            }
+
+            this.isFirmwareChanged(device_data, (error, result) => {
+                if (error) {
+                    return this.error(error);
+                }
+
+                device.info = device_data;
+            });
         });
     }
 
@@ -75,7 +87,10 @@ class DriverDoorbell extends Driver {
             result.doorbots.forEach((device_data) => {
                 foundDevices.push({
                     name : device_data.description,
-                    data : device_data
+                    data : {
+                        id: device_data.id
+                    },
+                    info : device_data
                 });
             });
 
