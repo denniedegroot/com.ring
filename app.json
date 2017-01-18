@@ -83,8 +83,8 @@
                 "nl": "Stick Up Cam"
             },
             "images": {
-                "large": "./drivers/chime/assets/images/large.jpg",
-                "small": "./drivers/chime/assets/images/small.jpg"
+                "large": "./drivers/stickupcam/assets/images/large.jpg",
+                "small": "./drivers/stickupcam/assets/images/small.jpg"
             },
             "class": "sensor",
             "capabilities": [ "alarm_motion", "measure_battery" ],
