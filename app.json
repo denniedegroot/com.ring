@@ -4,11 +4,26 @@
         "en": "Ring"
     },
     "version": "1.1.0",
-    "compatibility": "1.x",
+    "compatibility": "1.x >=1.5.0",
+    "sdk": 2,
     "author": {
         "name": "Dennie de Groot",
         "email": "mail@denniedegroot.nl",
         "website": "https://denniedegroot.nl"
+    },
+    "contributors": {
+        "developers": [{
+            "name": "Dennie de Groot",
+            "email": "mail@denniedegroot.nl",
+            "website": "https://denniedegroot.nl"
+        }]
+    },
+    "contributing": {
+        "donate": {
+            "paypal": {
+                "username": "denniedegroot"
+            }
+        }
     },
     "description": {
         "en": "Ring support for Homey",
@@ -105,124 +120,5 @@
                 }
             ]
         }
-    ],
-    "flow": {
-        "triggers": [
-            {
-                "id": "doorbell_firmware_changed",
-                "title": {
-                    "en": "Firmware changed",
-                    "nl": "Firmware is veranderd"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=doorbell"
-                    }
-                ],
-                "tokens": [
-                    {
-                        "name": "old_firmware",
-                        "type": "string",
-                        "title": {
-                            "en": "old version",
-                            "nl": "oude versie"
-                        },
-                        "example": {
-                            "en": "1.0.0",
-                            "nl": "1.0.0"
-                        }
-                    }, {
-                        "name": "new_firmware",
-                        "type": "string",
-                        "title": {
-                            "en": "new version",
-                            "nl": "nieuwe versie"
-                        },
-                        "example": {
-                            "en": "2.0.0",
-                            "nl": "2.0.0"
-                        }
-                    }
-                ]
-            }, {
-                "id": "chime_firmware_changed",
-                "title": {
-                    "en": "Firmware changed",
-                    "nl": "Firmware is veranderd"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=chime"
-                    }
-                ],
-                "tokens": [
-                    {
-                        "name": "old_firmware",
-                        "type": "string",
-                        "title": {
-                            "en": "old version",
-                            "nl": "oude versie"
-                        },
-                        "example": {
-                            "en": "1.0.0",
-                            "nl": "1.0.0"
-                        }
-                    }, {
-                        "name": "new_firmware",
-                        "type": "string",
-                        "title": {
-                            "en": "new version",
-                            "nl": "nieuwe versie"
-                        },
-                        "example": {
-                            "en": "2.0.0",
-                            "nl": "2.0.0"
-                        }
-                    }
-                ]
-            }, {
-                "id": "stickupcam_firmware_changed",
-                "title": {
-                    "en": "Firmware changed",
-                    "nl": "Firmware is veranderd"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=stickupcam"
-                    }
-                ],
-                "tokens": [
-                    {
-                        "name": "old_firmware",
-                        "type": "string",
-                        "title": {
-                            "en": "old version",
-                            "nl": "oude versie"
-                        },
-                        "example": {
-                            "en": "1.0.0",
-                            "nl": "1.0.0"
-                        }
-                    }, {
-                        "name": "new_firmware",
-                        "type": "string",
-                        "title": {
-                            "en": "new version",
-                            "nl": "nieuwe versie"
-                        },
-                        "example": {
-                            "en": "2.0.0",
-                            "nl": "2.0.0"
-                        }
-                    }
-                ]
-            }
-        ]
-    }
+    ]
 }

@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
     <head>
+        <script type="text/javascript" src="/homey.js" data-origin="settings"></script>
     </head>
     <body>
 
@@ -23,48 +24,18 @@
                 <input class="form-input" id="settings-auth-pass" data-i18n-placeholder="" type="password" value=""/>
             </div>
 
-            <button id="settings-auth-authenticate" data-i18n="settings.auth.authenticate" onclick="onAuth()"></button>
+            <button id="settings-auth-authenticate" data-i18n="settings.auth.authenticate"></button>
         </div>
 
         <div id="settings-auth-revoke">
-            <button id="settings-auth-revoke" data-i18n="settings.auth.revoke" onclick="onRevokeAuth()"></button>
+            <button id="settings-auth-revoke" data-i18n="settings.auth.revoke"></button>
         </div>
     </fieldset>
 
     <script type="text/javascript">
-        showAuth();
+        function onHomeyReady(Homey) {
+            Homey.ready();
 
-        function onAuth() {
-            var auth = {};
-
-            auth.user = document.getElementById('settings-auth-user').value;
-            auth.pass = document.getElementById('settings-auth-pass').value;
-
-            Homey.set('ringCredentials', auth);
-        }
-
-        function onRevokeAuth() {
-            Homey.unset('ringAccesstoken');
-            showAuth();
-        }
-
-        function showAuth() {
-            var revoke = document.getElementById('settings-auth-revoke');
-            revoke.style.display = 'none';
-
-            var auth = document.getElementById('settings-auth');
-            auth.style.display = 'block';
-        }
-
-        function showRevoke() {
-            var auth = document.getElementById('settings-auth');
-            auth.style.display = 'none';
-
-            var revoke = document.getElementById('settings-auth-revoke');
-            revoke.style.display = 'block';
-        }
-
-        function onHomeyReady() {
             Homey.on('com.ring.status', function (data) {
                 if (data.state !== 'authenticated') {
                     showAuth();
@@ -87,9 +58,47 @@
                         document.getElementById('settings-auth-user').value = data.user;
                     }
                 });
-
-                Homey.ready();
             });
+
+            document.getElementById('settings-auth-authenticate').addEventListener('click', function(elem) {
+                onAuth(Homey);
+            });
+
+            document.getElementById('settings-auth-revoke').addEventListener('click', function(elem) {
+                onRevokeAuth(Homey);
+            });
+        }
+
+        showAuth();
+
+        function onAuth(Homey) {
+            var auth = {};
+
+            auth.user = document.getElementById('settings-auth-user').value;
+            auth.pass = document.getElementById('settings-auth-pass').value;
+
+            Homey.set('ringCredentials', auth);
+        }
+
+        function onRevokeAuth(Homey) {
+            Homey.unset('ringAccesstoken');
+            showAuth();
+        }
+
+        function showAuth() {
+            var revoke = document.getElementById('settings-auth-revoke');
+            revoke.style.display = 'none';
+
+            var auth = document.getElementById('settings-auth');
+            auth.style.display = 'block';
+        }
+
+        function showRevoke() {
+            var auth = document.getElementById('settings-auth');
+            auth.style.display = 'none';
+
+            var revoke = document.getElementById('settings-auth-revoke');
+            revoke.style.display = 'block';
         }
     </script>
     </body>

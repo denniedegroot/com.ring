@@ -1,19 +1,11 @@
-"use strict";
+'use strict';
+
+const Homey = require('homey');
 
 const api = require('./lib/Api.js');
 const events = require('events');
 
-class App extends events.EventEmitter {
-
-    constructor() {
-        super();
-
-        this.init = this._onExportsInit.bind(this);
-        this._api = new api();
-
-        this._api.on('refresh_device', this._syncDevice.bind(this));
-        this._api.on('refresh_devices', this._syncDevices.bind(this));
-    }
+class App extends Homey.App {
 
     log() {
         console.log.bind(this, '[log]').apply(this, arguments);
@@ -23,17 +15,23 @@ class App extends events.EventEmitter {
         console.error.bind(this, '[error]').apply(this, arguments);
     }
 
-    _onExportsInit() {
+    onInit() {
         console.log(`${Homey.manifest.id} running...`);
+
+        this._api = new api();
+
+        this._api.on('refresh_device', this._syncDevice.bind(this));
+        this._api.on('refresh_devices', this._syncDevices.bind(this));
+
         this._api.init();
     }
 
     _syncDevice(data) {
-        this.emit('refresh_device', data);
+        Homey.emit('refresh_device', data);
     }
 
     _syncDevices(data) {
-        this.emit('refresh_devices', data);
+        Homey.emit('refresh_devices', data);
     }
 
     getRingDevices(callback) {
@@ -42,4 +40,4 @@ class App extends events.EventEmitter {
 
 }
 
-module.exports = new App();
+module.exports = App;
