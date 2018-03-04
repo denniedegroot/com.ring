@@ -38,6 +38,10 @@ class App extends Homey.App {
         this._api.getDevices(callback);
     }
 
+    ringChime(data, callback) {
+        this._api.ringChime(data, callback);
+    }
+
 }
 
 module.exports = App;
