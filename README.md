@@ -8,3 +8,11 @@ Connect your Ring products with Homey.
 
 ## Licensing:
 * This application is subject to [these terms](https://github.com/denniedegroot/com.ring/blob/master/LICENSE).
+
+---
+
+## Changelog 2.0.0:
+- SDKv2 support
+- Added Ring Chime action card
+
+---
