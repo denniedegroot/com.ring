@@ -81,7 +81,8 @@
         }
 
         function onRevokeAuth(Homey) {
-            Homey.unset('ringAccesstoken');
+            Homey.set('ringCredentials', null);
+            Homey.set('ringAccesstoken', null);
             showAuth();
         }
 
