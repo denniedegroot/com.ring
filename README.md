@@ -11,6 +11,11 @@ Connect your Ring products with Homey.
 
 ---
 
+## Changelog 2.0.1:
+- Support the new oauth athentication method
+
+---
+
 ## Changelog 2.0.0:
 - SDKv2 support
 - Added Ring Chime action card
