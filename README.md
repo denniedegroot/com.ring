@@ -11,6 +11,11 @@ Connect your Ring products with Homey.
 
 ---
 
+## Changelog 2.0.2:
+- Ring API change
+
+---
+
 ## Changelog 2.0.1:
 - Support the new oauth athentication method
 

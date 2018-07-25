@@ -3,7 +3,7 @@
     "name": {
         "en": "Ring"
     },
-    "version": "2.0.1",
+    "version": "2.0.2",
     "compatibility": "1.x >=1.5.0",
     "sdk": 2,
     "author": {
