@@ -11,6 +11,11 @@ Connect your Ring products with Homey.
 
 ---
 
+## Changelog 2.0.3:
+- Bugfix
+
+---
+
 ## Changelog 2.0.2:
 - Ring API change
 
