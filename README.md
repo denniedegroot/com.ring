@@ -11,6 +11,11 @@ Connect your Ring products with Homey.
 
 ---
 
+## Changelog 2.0.4:
+- Compatibilty for Homey 2.0
+
+---
+
 ## Changelog 2.0.3:
 - Bugfix
 
