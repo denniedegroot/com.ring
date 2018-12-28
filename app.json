@@ -4,7 +4,7 @@
         "en": "Ring"
     },
     "version": "2.0.3",
-    "compatibility": "1.x >=1.5.0",
+    "compatibility": "",
     "sdk": 2,
     "author": {
         "name": "Dennie de Groot",
