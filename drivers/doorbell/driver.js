@@ -5,6 +5,14 @@ const Driver = require('../../lib/Driver.js');
 
 class DriverDoorbell extends Driver {
 
+    onInit() {
+        this.log('onInit');
+
+        new Homey.FlowCardAction('ring_grab_snapshot')
+            .register()
+            .registerRunListener((args, state) => args.device.grabImage());
+    }
+
     _onPairListDevices(data, callback) {
         this.log('_onPairListDevices');
 
