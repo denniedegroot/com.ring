@@ -123,6 +123,24 @@
         }
     ],
     "flow": {
+        "triggers": [
+            {
+                "id": "ring_snapshot_received",
+                "title": {
+                    "en": "Snapshot is grabbed",
+                    "nl": "Snapshot is opgehaald"
+                },
+                "tokens": [
+                    {
+                        "name": "ring_image",
+                        "type": "image",
+                        "title": {
+                            "en": "image"
+                        }
+                    }
+                ]
+            }
+        ],
         "actions": [
             {
                 "id": "ring_chime",
@@ -135,6 +153,19 @@
                         "name": "device",
                         "type": "device",
                         "filter": "driver_id=chime"
+                    }
+                ]
+            }, {
+                "id": "ring_grab_snapshot",
+                "title": {
+                    "en": "Grab current snapshot",
+                    "nl": "Haal huidige snapshot op"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=doorbell"
                     }
                 ]
             }

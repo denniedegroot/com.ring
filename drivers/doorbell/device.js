@@ -82,6 +82,31 @@ class DeviceDoorbell extends Device {
         });
     }
 
+    grabImage(args, state) {
+        if (this._device instanceof Error)
+            return Promise.reject(this._device);
+
+        let _this = this;
+        let device_data = this.getData();
+
+        return new Promise(function(resolve, reject) {
+            Homey.app.grabImage(device_data, (error, result) => {
+                if (error)
+                    return reject(error);
+
+                let ringImage = new Homey.Image('jpg')
+                ringImage.setBuffer(result);
+
+                ringImage.register().then(() => {
+                    new Homey.FlowCardTrigger('ring_snapshot_received').register().trigger({ring_image: ringImage}).catch(error => { this.error(error); });
+                    return resolve(true);
+                }).catch(error => {
+                    return reject(error);
+                });
+            });
+        });
+    }
+
 }
 
 module.exports = DeviceDoorbell;
