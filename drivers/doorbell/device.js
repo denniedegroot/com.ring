@@ -95,7 +95,7 @@ class DeviceDoorbell extends Device {
                     return reject(error);
 
                 let ringImage = new Homey.Image('jpg')
-                ringImage.setBuffer(result);
+                ringImage.setBuffer(new Buffer( result, 'binary' ));
 
                 ringImage.register().then(() => {
                     new Homey.FlowCardTrigger('ring_snapshot_received').register().trigger({ring_image: ringImage}).catch(error => { this.error(error); });
