@@ -11,6 +11,11 @@ Connect your Ring products with Homey.
 
 ---
 
+## Changelog 2.1.1:
+- Ring grabber bugfixes
+
+---
+
 ## Changelog 2.1.0:
 - Added Ring image grabber trigger and action card
 
