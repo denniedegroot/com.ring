@@ -71,7 +71,7 @@ class DeviceDoorbell extends Device {
             if (device_data.id !== this.getData().id)
                 return;
 
-            let battery = device_data.battery_life;
+            let battery = parseInt(device_data.battery_life);
 
             if (battery > 100)
                 battery = 100;
