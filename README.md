@@ -1,5 +1,6 @@
 # Ring for Homey
 Connect your Ring products with Homey.
+Two-Factor Security Authentication is not supported, you must disable this on your Ring account!
 
 ## Currently supports:
 * Ring Chime (Pro)

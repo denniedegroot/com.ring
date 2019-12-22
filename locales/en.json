@@ -8,6 +8,7 @@
         "intro": "Before Homey can add Ring products we need authentication.",
         "auth": {
             "header": "Ring Authentication Credentials",
+            "warning": "Two-Factor Authentication is not supported, you must disable this on your Ring account!",
             "user": "Email",
             "pass": "Password",
             "authenticate": "Authenticate",
