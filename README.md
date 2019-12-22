@@ -12,6 +12,11 @@ Two-Factor Security Authentication is not supported, you must disable this on yo
 
 ---
 
+## Changelog 2.1.3:
+- Ring API change
+
+---
+
 ## Changelog 2.1.2:
 - Ring grabber bugfixes
 
