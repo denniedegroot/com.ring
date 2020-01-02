@@ -64,6 +64,40 @@ class DeviceStickUpCam extends Device {
         });
     }
 
+    enableMotion(args, state) {
+        if (this._device instanceof Error)
+            return Promise.reject(this._device);
+
+        let _this = this;
+        let device_data = this.getData();
+
+        return new Promise(function(resolve, reject) {
+            Homey.app.enableMotion(device_data, (error, result) => {
+                if (error)
+                    return reject(error);
+
+                return resolve(true);
+            });
+        });
+    }
+
+    disableMotion(args, state) {
+        if (this._device instanceof Error)
+            return Promise.reject(this._device);
+
+        let _this = this;
+        let device_data = this.getData();
+
+        return new Promise(function(resolve, reject) {
+            Homey.app.disableMotion(device_data, (error, result) => {
+                if (error)
+                    return reject(error);
+
+                return resolve(true);
+            });
+        });
+    }
+
 }
 
 module.exports = DeviceStickUpCam;

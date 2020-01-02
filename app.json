@@ -174,6 +174,58 @@
                         "filter": "driver_id=doorbell"
                     }
                 ]
+            }, {
+                "id": "doorbell_enable_motion",
+                "title": {
+                    "en": "Enable motion detection",
+                    "nl": "Schakel bewegingsdetectie in"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=doorbell"
+                    }
+                ]
+            }, {
+                "id": "doorbell_disable_motion",
+                "title": {
+                    "en": "Disable motion detection",
+                    "nl": "Schakel bewegingsdetectie uit"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=doorbell"
+                    }
+                ]
+            }, {
+                "id": "stickupcam_enable_motion",
+                "title": {
+                    "en": "Enable motion detection",
+                    "nl": "Schakel bewegingsdetectie in"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=stickupcam"
+                    }
+                ]
+            }, {
+                "id": "stickupcam_disable_motion",
+                "title": {
+                    "en": "Disable motion detection",
+                    "nl": "Schakel bewegingsdetectie uit"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=stickupcam"
+                    }
+                ]
             }
         ]
     }

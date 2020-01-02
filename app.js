@@ -46,6 +46,14 @@ class App extends Homey.App {
         this._api.grabImage(data, callback);
     }
 
+    enableMotion(data, callback) {
+        this._api.enableMotion(data, callback);
+    }
+
+    disableMotion(data, callback) {
+        this._api.disableMotion(data, callback);
+    }
+
 }
 
 module.exports = App;

@@ -11,6 +11,14 @@ class DriverDoorbell extends Driver {
         new Homey.FlowCardAction('ring_grab_snapshot')
             .register()
             .registerRunListener((args, state) => args.device.grabImage());
+
+        new Homey.FlowCardAction('doorbell_enable_motion')
+            .register()
+            .registerRunListener((args, state) => args.device.enableMotion());
+
+        new Homey.FlowCardAction('doorbell_disable_motion')
+            .register()
+            .registerRunListener((args, state) => args.device.disableMotion());
     }
 
     _onPairListDevices(data, callback) {

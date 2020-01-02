@@ -5,6 +5,18 @@ const Driver = require('../../lib/Driver.js');
 
 class DriverStickUpCam extends Driver {
 
+    onInit() {
+        this.log('onInit');
+
+        new Homey.FlowCardAction('stickupcam_enable_motion')
+            .register()
+            .registerRunListener((args, state) => args.device.enableMotion());
+
+        new Homey.FlowCardAction('stickupcam_disable_motion')
+            .register()
+            .registerRunListener((args, state) => args.device.disableMotion());
+    }
+
     _onPairListDevices(data, callback) {
         this.log('_onPairListDevices');
 
