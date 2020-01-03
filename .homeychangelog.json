@@ -30,6 +30,6 @@
     "en": "Ring API change"
   },
   "2.1.4": {
-    "en": "Fix authentication failure"
+    "en": "Fix authentication failure, add motion enable/disable action cards"
   }
 }
