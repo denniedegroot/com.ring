@@ -11,58 +11,31 @@
 
     <fieldset>
         <legend data-i18n="settings.auth.header"></legend>
+        
+        <p id="error" style='color: red;'></p>
 
-        <div id="settings-auth">
-            <p id="error" style='color: red;'></p>
-
-            <div class="field row">
-                <label class="form-label" for="settings-auth-user" data-i18n="settings.auth.user"></label>
-                <input class="form-input" id="settings-auth-user" data-i18n-placeholder="" type="text" value=""/>
-            </div>
-
-            <div class="field row">
-                <label class="form-label" for="settings-auth-pass" data-i18n="settings.auth.pass"></label>
-                <input class="form-input" id="settings-auth-pass" data-i18n-placeholder="" type="password" value=""/>
-            </div>
-
-            <button id="settings-auth-authenticate" data-i18n="settings.auth.authenticate"></button>
-        </div>
-
-        <div id="settings-auth-revoke">
-            <button id="settings-auth-revoke" data-i18n="settings.auth.revoke"></button>
-        </div>
+        <button id="settings-auth-revoke" data-i18n="settings.auth.revoke"></button>
     </fieldset>
 
     <script type="text/javascript">
         function onHomeyReady(Homey) {
             Homey.ready();
 
+
             Homey.on('com.ring.status', function (data) {
                 if (data.state !== 'authenticated') {
-                    showAuth();
-                    document.getElementById('error').innerHTML = 'Error: ' + data.state.message;
+                    hideRevoke();
                 } else {
                     document.getElementById('error').innerHTML = '';
-                    showRevoke();
                 }
             });
+
 
             Homey.get('ringAccesstoken', function (err, data) {
-                if (data) {
-                    showRevoke();
+                Homey.alert(JSON.stringify(data));
+                if (!data) {
+                    hideRevoke();
                 }
-
-                Homey.get('ringCredentials', function (err, data) {
-                    if (err || data == undefined) {
-                        console.log(err);
-                    } else {
-                        document.getElementById('settings-auth-user').value = data.user;
-                    }
-                });
-            });
-
-            document.getElementById('settings-auth-authenticate').addEventListener('click', function(elem) {
-                onAuth(Homey);
             });
 
             document.getElementById('settings-auth-revoke').addEventListener('click', function(elem) {
@@ -70,38 +43,19 @@
             });
         }
 
-        showAuth();
-
-        function onAuth(Homey) {
-            var auth = {};
-
-            auth.user = document.getElementById('settings-auth-user').value;
-            auth.pass = document.getElementById('settings-auth-pass').value;
-
-            Homey.set('ringCredentials', auth);
+        function hideRevoke()
+        {
+            document.getElementById('error').innerHTML = 'Error: You need to authenticate this app from the add device wizard';
+            document.getElementById('settings-auth-revoke').style.display = 'none';
         }
 
         function onRevokeAuth(Homey) {
-            Homey.set('ringCredentials', null);
             Homey.set('ringAccesstoken', null);
-            showAuth();
+            Homey.set('ringBearer', null);
+            Homey.set('ringRefreshToken', null);
+            hideRevoke();
         }
 
-        function showAuth() {
-            var revoke = document.getElementById('settings-auth-revoke');
-            revoke.style.display = 'none';
-
-            var auth = document.getElementById('settings-auth');
-            auth.style.display = 'block';
-        }
-
-        function showRevoke() {
-            var auth = document.getElementById('settings-auth');
-            auth.style.display = 'none';
-
-            var revoke = document.getElementById('settings-auth-revoke');
-            revoke.style.display = 'block';
-        }
     </script>
     </body>
 </html>

@@ -3,7 +3,7 @@
     "name": {
         "en": "Ring"
     },
-    "version": "2.1.4",
+    "version": "2.2.0",
     "compatibility": ">=3.2.0",
     "sdk": 2,
     "author": {
@@ -16,6 +16,10 @@
             "name": "Dennie de Groot",
             "email": "mail@denniedegroot.nl",
             "website": "https://denniedegroot.nl"
+        },
+        {
+            "name": "Kaoh",
+            "email": "kaoh@kaoh.nl"
         }]
     },
     "contributing": {
