@@ -32,7 +32,6 @@
 
 
             Homey.get('ringAccesstoken', function (err, data) {
-                Homey.alert(JSON.stringify(data));
                 if (!data) {
                     hideRevoke();
                 }
