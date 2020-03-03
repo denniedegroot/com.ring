@@ -12,11 +12,17 @@
         "website": "https://denniedegroot.nl"
     },
     "contributors": {
-        "developers": [{
-            "name": "Dennie de Groot",
-            "email": "mail@denniedegroot.nl",
-            "website": "https://denniedegroot.nl"
-        }]
+        "developers": [
+            {
+                "name": "Dennie de Groot",
+                "email": "mail@denniedegroot.nl",
+                "website": "https://denniedegroot.nl"
+            },
+            {
+                "name": "Kaoh",
+                "email": "kaoh@kaoh.nl"
+            }
+        ]
     },
     "contributing": {
         "donate": {

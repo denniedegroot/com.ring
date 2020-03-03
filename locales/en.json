@@ -8,11 +8,13 @@
         "intro": "Before Homey can add Ring products we need authentication.",
         "auth": {
             "header": "Ring Authentication Credentials",
-            "warning": "Two-Factor Authentication is not supported, you must disable this on your Ring account!",
+            "warning": "Two-Factor Authentication is required, you must enable this on your Ring account!",
             "user": "Email",
             "pass": "Password",
             "authenticate": "Authenticate",
-            "revoke": "Revoke Authentication"
+            "revoke": "Revoke Authentication",
+            "token": "Enter MFA code you received",
+            "validatecode": "Authorize"
         }
     }
 }
