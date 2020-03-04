@@ -31,5 +31,8 @@
   },
   "2.1.4": {
     "en": "Fix authentication failure, add motion enable/disable action cards"
+  },
+  "2.2.0": {
+    "en": "Added 2FA"
   }
 }

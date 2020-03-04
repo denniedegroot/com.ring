@@ -1,9 +1,9 @@
 {
-    "id": "com.ring",
+    "id": "com.amazon.ring",
     "name": {
         "en": "Ring"
     },
-    "version": "2.1.4",
+    "version": "2.2.0",
     "compatibility": ">=3.2.0",
     "sdk": 2,
     "author": {
