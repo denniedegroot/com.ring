@@ -34,5 +34,8 @@
   },
   "2.2.0": {
     "en": "Added 2FA"
+  },
+  "2.2.2": {
+    "en": "Removed markdown from readme"
   }
 }
