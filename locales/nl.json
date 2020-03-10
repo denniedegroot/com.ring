@@ -8,11 +8,13 @@
         "intro": "Voordat Homey Ring producten kan toevoegen moet er autorisatie gegeven worden.",
         "auth": {
             "header": "Ring Autorisatie Gegevens",
-            "warning": "Two-Factor Authenticatie is niet ondersteund, dit moet uitgeschakeld zijn op je Ring account!",
+            "warning": "Two-Factor Authenticatie is vereist, dit moet ingeschakeld zijn op je Ring account!",
             "user": "Email",
             "pass": "Wachtwoord",
             "authenticate": "Autoriseer",
-            "revoke": "Verwijder autorisatie"
+            "revoke": "Verwijder autorisatie",
+            "token": "Enter MFA code welke je ontvangen hebt",
+            "validatecode": "Authoriseren"
         }
     }
 }
