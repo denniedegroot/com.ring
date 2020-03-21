@@ -207,6 +207,7 @@
                     }
                 ]
             }, {
+<<<<<<< HEAD
                 "id": "stickupcam_grab_snapshot",
                 "title": {
                     "en": "Grab current snapshot",
@@ -220,6 +221,8 @@
                     }
                 ]
             }, {
+=======
+>>>>>>> readded missing files
                 "id": "stickupcam_enable_motion",
                 "title": {
                     "en": "Enable motion detection",
