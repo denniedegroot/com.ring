@@ -3,7 +3,7 @@
     "name": {
         "en": "Ring"
     },
-    "version": "2.2.3",
+    "version": "2.2.4",
     "compatibility": ">=3.2.0",
     "sdk": 2,
     "author": {
@@ -204,6 +204,19 @@
                         "name": "device",
                         "type": "device",
                         "filter": "driver_id=doorbell"
+                    }
+                ]
+            }, {
+                "id": "stickupcam_grab_snapshot",
+                "title": {
+                    "en": "Grab current snapshot",
+                    "nl": "Haal huidige snapshot op"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=stickupcam"
                     }
                 ]
             }, {

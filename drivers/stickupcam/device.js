@@ -12,6 +12,11 @@ class DeviceStickUpCam extends Device {
 
         this.device = {}
         this.device.timer = {};
+        this.device.cameraImage = new Homey.Image();
+        this.device.cameraImage.setPath('/assets/images/large.jpg');
+        this.device.cameraImage.register().catch(console.error).then(function() {
+            this.setCameraImage(this.getName(),this.getName(),this.device.cameraImage);
+        }.bind(this));        
 
         this.setCapabilityValue('alarm_motion', false).catch(error => {
             this.error(error);
@@ -60,6 +65,26 @@ class DeviceStickUpCam extends Device {
 
             this.setCapabilityValue('measure_battery', battery).catch(error => {
                 this.error(error);
+            });
+        });
+    }
+
+    grabImage(args, state) {
+        if (this._device instanceof Error)
+            return Promise.reject(this._device);
+
+        let _this = this;
+        let device_data = this.getData();
+
+        return new Promise(function(resolve, reject) {
+            Homey.app.grabImage(device_data, (error, result) => {
+                if (error)
+                    return reject(error);
+                _this.device.cameraImage.setBuffer(new Buffer( result, 'binary' ));
+                _this.device.cameraImage.update().then(() =>{
+                    new Homey.FlowCardTrigger('ring_snapshot_received').register().trigger({ring_image: _this.device.cameraImage}).catch(error => { this.error(error); });
+                    return resolve(true);
+                });
             });
         });
     }
