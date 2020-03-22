@@ -17,6 +17,10 @@ class DeviceDoorbell extends Device {
         this.device.cameraImage.register().catch(console.error).then(function() {
             this.setCameraImage(this.getName(),this.getName(),this.device.cameraImage);
         }.bind(this));
+<<<<<<< HEAD
+=======
+        
+>>>>>>> Added support for the CameraImage page in doorbell
 
         this.setCapabilityValue('alarm_generic', false).catch(error => {
             this.error(error);
