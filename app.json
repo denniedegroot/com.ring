@@ -3,7 +3,7 @@
     "name": {
         "en": "Ring"
     },
-    "version": "2.2.3",
+    "version": "2.2.4",
     "compatibility": ">=3.2.0",
     "sdk": 2,
     "author": {
@@ -208,6 +208,9 @@
                 ]
             }, {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> Added grab image support for stickup cam
                 "id": "stickupcam_grab_snapshot",
                 "title": {
                     "en": "Grab current snapshot",
@@ -221,8 +224,11 @@
                     }
                 ]
             }, {
+<<<<<<< HEAD
 =======
 >>>>>>> readded missing files
+=======
+>>>>>>> Added grab image support for stickup cam
                 "id": "stickupcam_enable_motion",
                 "title": {
                     "en": "Enable motion detection",
