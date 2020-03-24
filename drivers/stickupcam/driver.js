@@ -8,6 +8,11 @@ class DriverStickUpCam extends Driver {
     onInit() {
         this.log('onInit');
 
+        new Homey.FlowCardAction('stickupcam_grab_snapshot')
+            .register()
+            .registerRunListener((args, state) => args.device.grabImage());
+
+
         new Homey.FlowCardAction('stickupcam_enable_motion')
             .register()
             .registerRunListener((args, state) => args.device.enableMotion());

@@ -12,6 +12,11 @@ class DeviceDoorbell extends Device {
 
         this.device = {}
         this.device.timer = {};
+        this.device.cameraImage = new Homey.Image();
+        this.device.cameraImage.setPath('/assets/images/large.jpg');
+        this.device.cameraImage.register().catch(console.error).then(function() {
+            this.setCameraImage(this.getName(),this.getName(),this.device.cameraImage);
+        }.bind(this));
 
         this.setCapabilityValue('alarm_generic', false).catch(error => {
             this.error(error);
@@ -93,15 +98,10 @@ class DeviceDoorbell extends Device {
             Homey.app.grabImage(device_data, (error, result) => {
                 if (error)
                     return reject(error);
-
-                let ringImage = new Homey.Image('jpg')
-                ringImage.setBuffer(new Buffer( result, 'binary' ));
-
-                ringImage.register().then(() => {
-                    new Homey.FlowCardTrigger('ring_snapshot_received').register().trigger({ring_image: ringImage}).catch(error => { this.error(error); });
+                _this.device.cameraImage.setBuffer(new Buffer( result, 'binary' ));
+                _this.device.cameraImage.update().then(() =>{
+                    new Homey.FlowCardTrigger('ring_snapshot_received').register().trigger({ring_image: _this.device.cameraImage}).catch(error => { this.error(error); });
                     return resolve(true);
-                }).catch(error => {
-                    return reject(error);
                 });
             });
         });

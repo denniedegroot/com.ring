@@ -207,6 +207,19 @@
                     }
                 ]
             }, {
+                "id": "stickupcam_grab_snapshot",
+                "title": {
+                    "en": "Grab current snapshot",
+                    "nl": "Haal huidige snapshot op"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=stickupcam"
+                    }
+                ]
+            }, {
                 "id": "stickupcam_enable_motion",
                 "title": {
                     "en": "Enable motion detection",
