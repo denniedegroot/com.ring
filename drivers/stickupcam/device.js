@@ -17,6 +17,9 @@ class DeviceStickUpCam extends Device {
             this.error(error);
         });
 
+        this.setAvailable();
+        this._setupCameraView(this.getData());
+
         Homey.on('refresh_device', this._syncDevice.bind(this));
         Homey.on('refresh_devices', this._syncDevices.bind(this));
     }
@@ -76,9 +79,7 @@ class DeviceStickUpCam extends Device {
             if (device_data.id !== this.getData().id)
                 return;
 
-            this.setAvailable();
-            this._setupCameraView(device_data);
-    
+   
             let battery = parseInt(device_data.battery_life);
 
             if (battery > 100)
