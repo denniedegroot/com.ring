@@ -12,7 +12,6 @@ class DeviceDoorbell extends Device {
 
         this.device = {}
         this.device.timer = {};
-        
 
         this.setCapabilityValue('alarm_generic', false).catch(error => {
             this.error(error);
@@ -21,6 +20,9 @@ class DeviceDoorbell extends Device {
         this.setCapabilityValue('alarm_motion', false).catch(error => {
             this.error(error);
         });
+
+        this.setAvailable();
+        this._setupCameraView(this.getData());
 
         Homey.on('refresh_device', this._syncDevice.bind(this));
         Homey.on('refresh_devices', this._syncDevices.bind(this));
@@ -31,13 +33,15 @@ class DeviceDoorbell extends Device {
         this.device.cameraImage = new Homey.Image();
         this.device.cameraImage.setStream(async (stream) => {
             await Homey.app.grabImage(device_data, (error, result) => {
-                if (error)
-                    throw new Error(error);
-                else
-                {
+                if (!error) {
                     let Duplex = require('stream').Duplex; 
                     let snapshot = new Duplex();
                     snapshot.push(Buffer.from(result, 'binary'));
+                    snapshot.push(null);
+                    return snapshot.pipe(stream);
+                } else {
+                    let Duplex = require('stream').Duplex; 
+                    let snapshot = new Duplex();
                     snapshot.push(null);
                     return snapshot.pipe(stream);
                 }
@@ -93,9 +97,6 @@ class DeviceDoorbell extends Device {
         data.doorbots.forEach((device_data) => {
             if (device_data.id !== this.getData().id)
                 return;
-
-            this.setAvailable();
-            this._setupCameraView(device_data);
 
             let battery = parseInt(device_data.battery_life);
 

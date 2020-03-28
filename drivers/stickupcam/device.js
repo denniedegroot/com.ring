@@ -29,13 +29,15 @@ class DeviceStickUpCam extends Device {
         this.device.cameraImage = new Homey.Image();
         this.device.cameraImage.setStream(async (stream) => {
             await Homey.app.grabImage(device_data, (error, result) => {
-                if (error)
-                    throw new Error(error);
-                else
-                {
+                if (!error) {
                     let Duplex = require('stream').Duplex; 
                     let snapshot = new Duplex();
                     snapshot.push(Buffer.from(result, 'binary'));
+                    snapshot.push(null);
+                    return snapshot.pipe(stream);
+                } else {
+                    let Duplex = require('stream').Duplex; 
+                    let snapshot = new Duplex();
                     snapshot.push(null);
                     return snapshot.pipe(stream);
                 }
