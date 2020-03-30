@@ -12,18 +12,6 @@ class DeviceStickUpCam extends Device {
 
         this.device = {}
         this.device.timer = {};
-<<<<<<< HEAD
-        this.device.cameraImage = new Homey.Image();
-        this.device.cameraImage.setPath('/assets/images/large.jpg');
-        this.device.cameraImage.register().catch(console.error).then(function() {
-            this.setCameraImage(this.getName(),this.getName(),this.device.cameraImage);
-<<<<<<< HEAD
-        }.bind(this));
-=======
-        }.bind(this));        
->>>>>>> Added grab image support for stickup cam
-=======
->>>>>>> synced doorbell refactor with stickupcam
 
         this.setCapabilityValue('alarm_motion', false).catch(error => {
             this.error(error);

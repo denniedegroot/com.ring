@@ -207,10 +207,6 @@
                     }
                 ]
             }, {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> Added grab image support for stickup cam
                 "id": "stickupcam_grab_snapshot",
                 "title": {
                     "en": "Grab current snapshot",
@@ -224,11 +220,6 @@
                     }
                 ]
             }, {
-<<<<<<< HEAD
-=======
->>>>>>> readded missing files
-=======
->>>>>>> Added grab image support for stickup cam
                 "id": "stickupcam_enable_motion",
                 "title": {
                     "en": "Enable motion detection",

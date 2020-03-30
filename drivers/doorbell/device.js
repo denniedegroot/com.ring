@@ -12,18 +12,6 @@ class DeviceDoorbell extends Device {
 
         this.device = {}
         this.device.timer = {};
-<<<<<<< HEAD
-        this.device.cameraImage = new Homey.Image();
-        this.device.cameraImage.setPath('/assets/images/large.jpg');
-        this.device.cameraImage.register().catch(console.error).then(function() {
-            this.setCameraImage(this.getName(),this.getName(),this.device.cameraImage);
-        }.bind(this));
-<<<<<<< HEAD
-=======
-        
->>>>>>> Added support for the CameraImage page in doorbell
-=======
->>>>>>> fixed crash on 404 image not found
 
         this.setCapabilityValue('alarm_generic', false).catch(error => {
             this.error(error);
