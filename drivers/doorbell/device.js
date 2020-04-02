@@ -48,7 +48,7 @@ class DeviceDoorbell extends Device {
             })
         })
         this.device.cameraImage.register().catch(console.error).then(function() {
-            this.setCameraImage(this.getName(),this.getName(),this.device.cameraImage);
+            this.setCameraImage(this.getName(),'snapshot',this.device.cameraImage);
         }.bind(this));
     }
 

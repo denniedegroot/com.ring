@@ -45,6 +45,30 @@
     },
     "category": "appliances",
     "athomForumDiscussionId": 4789,
+    "capabilities": {
+        "flood_light": {
+            "type": "boolean",
+            "title": {
+              "en": "Flood light",
+              "nl": "Schijnwerper"
+            },
+            "getable": true,
+            "setable": true,
+            "uiComponent": "toggle",
+            "uiQuickAction": true
+        },
+        "siren": {
+            "type": "boolean",
+            "title": {
+                "en": "Siren",
+                "nl": "Sirene"
+            },
+            "getable": true,
+            "setable": true,
+            "uiComponent": "toggle",
+            "uiQuickAction": true
+        }
+    },
     "drivers": [
         {
             "id": "doorbell",
@@ -245,6 +269,74 @@
                         "filter": "driver_id=stickupcam"
                     }
                 ]
+            }, {
+                "id": "stickupcam_light_on",
+                "title": {
+                    "en": "Turn the floodlight on",
+                    "nl": "Zet de schijnwerper aan"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=stickupcam"
+                    }
+                ]
+            }, {
+                "id": "stickupcam_light_off",
+                "title": {
+                    "en": "Turn the floodlight off",
+                    "nl": "Zet de schijnwerper uit"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=stickupcam"
+                    }
+                ]
+            }, {
+                "id": "stickupcam_siren_off",
+                "title": {
+                    "en": "Turn the siren off",
+                    "nl": "Zet de sirene uit"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=stickupcam"
+                    }
+                ]
+            }, {
+                "id": "stickupcam_siren_on",
+                "title": {
+                    "en": "Turn the siren on",
+                    "nl": "Zet de siren aan"
+                },
+                "args": [
+                    {
+                        "name": "device",
+                        "type": "device",
+                        "filter": "driver_id=stickupcam"
+                    }
+                ]
+            }
+        ],
+        "conditions": [
+            {
+              "id": "stickupcam_floodLight_on",
+              "title": {
+                "en": "The floodlight {{is|isn't}} on",
+                "nl": "De schijnwerper {{is|is niet}} aan"
+              },
+              "args": [
+                  {
+                      "name": "device",
+                      "type": "device",
+                      "filter": "driver_id=stickupcam"
+                  }
+              ]
             }
         ]
     }
