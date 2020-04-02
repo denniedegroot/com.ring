@@ -12,11 +12,6 @@ class DeviceDoorbell extends Device {
 
         this.device = {}
         this.device.timer = {};
-        this.device.cameraImage = new Homey.Image();
-        this.device.cameraImage.setPath('/assets/images/large.jpg');
-        this.device.cameraImage.register().catch(console.error).then(function() {
-            this.setCameraImage(this.getName(),this.getName(),this.device.cameraImage);
-        }.bind(this));
 
         this.setCapabilityValue('alarm_generic', false).catch(error => {
             this.error(error);
@@ -26,8 +21,35 @@ class DeviceDoorbell extends Device {
             this.error(error);
         });
 
+        this.setAvailable();
+        this._setupCameraView(this.getData());
+
         Homey.on('refresh_device', this._syncDevice.bind(this));
         Homey.on('refresh_devices', this._syncDevices.bind(this));
+    }
+
+    _setupCameraView(device_data) {
+        this.log('_setupCamera', device_data);
+        this.device.cameraImage = new Homey.Image();
+        this.device.cameraImage.setStream(async (stream) => {
+            await Homey.app.grabImage(device_data, (error, result) => {
+                if (!error) {
+                    let Duplex = require('stream').Duplex;
+                    let snapshot = new Duplex();
+                    snapshot.push(Buffer.from(result, 'binary'));
+                    snapshot.push(null);
+                    return snapshot.pipe(stream);
+                } else {
+                    let Duplex = require('stream').Duplex;
+                    let snapshot = new Duplex();
+                    snapshot.push(null);
+                    return snapshot.pipe(stream);
+                }
+            })
+        })
+        this.device.cameraImage.register().catch(console.error).then(function() {
+            this.setCameraImage(this.getName(),this.getName(),this.device.cameraImage);
+        }.bind(this));
     }
 
     _syncDevice(data) {
@@ -92,17 +114,10 @@ class DeviceDoorbell extends Device {
             return Promise.reject(this._device);
 
         let _this = this;
-        let device_data = this.getData();
-
         return new Promise(function(resolve, reject) {
-            Homey.app.grabImage(device_data, (error, result) => {
-                if (error)
-                    return reject(error);
-                _this.device.cameraImage.setBuffer(new Buffer( result, 'binary' ));
-                _this.device.cameraImage.update().then(() =>{
-                    new Homey.FlowCardTrigger('ring_snapshot_received').register().trigger({ring_image: _this.device.cameraImage}).catch(error => { this.error(error); });
-                    return resolve(true);
-                });
+            _this.device.cameraImage.update().then(() =>{
+                new Homey.FlowCardTrigger('ring_snapshot_received').register().trigger({ring_image: _this.device.cameraImage}).catch(error => { _this.error(error); });
+                return resolve(true);
             });
         });
     }
