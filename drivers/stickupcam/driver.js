@@ -12,7 +12,28 @@ class DriverStickUpCam extends Driver {
             .register()
             .registerRunListener((args, state) => args.device.grabImage());
 
+        new Homey.FlowCardAction('stickupcam_light_on')
+            .register()
+            .registerRunListener((args, state) => args.device.lightOn());
+        
+        new Homey.FlowCardAction('stickupcam_light_off')
+            .register()
+            .registerRunListener((args, state) => args.device.lightOff());
 
+        new Homey.FlowCardAction('stickupcam_siren_on')
+            .register()
+            .registerRunListener((args, state) => args.device.sirenOn());
+        
+        new Homey.FlowCardAction('stickupcam_siren_off')
+            .register()
+            .registerRunListener((args, state) => args.device.sirenOff());
+
+        new Homey.FlowCardCondition('stickupcam_floodLight_on')
+            .register()
+            .registerRunListener(async ( args, state ) => {
+                return args.device.isLightOn(); // Promise<boolean>
+            })
+            
         new Homey.FlowCardAction('stickupcam_enable_motion')
             .register()
             .registerRunListener((args, state) => args.device.enableMotion());
