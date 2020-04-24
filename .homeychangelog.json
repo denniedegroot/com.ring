@@ -40,5 +40,8 @@
   },
   "2.2.3": {
     "en": "Added stickup cam snapshot and camera image page"
+  },
+  "2.3.0": {
+    "en": "Added siren/floodlights support"
   }
 }
