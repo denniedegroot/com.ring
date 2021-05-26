@@ -40,6 +40,15 @@ class DriverDoorbell extends Driver {
                 });
             });
 
+            result.authorized_doorbots.forEach((device_data) => {
+                foundDevices.push({
+                    name : device_data.description,
+                    data : {
+                        id: device_data.id
+                    }
+                });
+            });
+
             Promise.all(foundDevices).then((results) => {
                 callback(null, foundDevices);
             });

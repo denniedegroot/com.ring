@@ -38,6 +38,22 @@ class App extends Homey.App {
         this._api.getDevices(callback);
     }
 
+    lightOn(data, callback) {
+        this._api.lightOn(data, callback);
+    }
+
+    lightOff(data, callback) {
+        this._api.lightOff(data, callback);
+    }
+
+    sirenOn(data, callback) {
+        this._api.sirenOn(data, callback);
+    }
+
+    sirenOff(data, callback) {
+        this._api.sirenOff(data, callback);
+    }
+
     ringChime(data, callback) {
         this._api.ringChime(data, callback);
     }
