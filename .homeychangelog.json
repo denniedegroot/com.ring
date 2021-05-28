@@ -43,5 +43,11 @@
   },
   "2.3.0": {
     "en": "Added siren/floodlights support"
+  },
+  "2.3.1": {
+    "en": "Added stickup cam enable/disable motion detection"
+  },
+  "2.3.2": {
+    "en": "Added realtime event for Ring security app"
   }
 }
