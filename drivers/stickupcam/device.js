@@ -103,6 +103,8 @@ class DeviceStickUpCam extends Device {
                         this.error(error);
                     });
 
+                    Homey.app.logRealtime('stickupcam', 'motion');
+
                     clearTimeout(this.device.timer.motion);
 
                     this.device.timer.motion = setTimeout(() => {
