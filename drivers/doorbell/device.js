@@ -65,6 +65,8 @@ class DeviceDoorbell extends Device {
                         this.error(error);
                     });
 
+                    Homey.app.logRealtime('doorbell', 'ding');
+
                     clearTimeout(this.device.timer.ding);
 
                     this.device.timer.ding = setTimeout(() => {
@@ -78,6 +80,8 @@ class DeviceDoorbell extends Device {
                     this.setCapabilityValue('alarm_motion', true).catch(error => {
                         this.error(error);
                     });
+
+                    Homey.app.logRealtime('doorbell', 'motion');
 
                     clearTimeout(this.device.timer.motion);
 

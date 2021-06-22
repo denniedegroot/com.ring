@@ -70,6 +70,11 @@ class App extends Homey.App {
         this._api.disableMotion(data, callback);
     }
 
+    logRealtime(event, details)
+    {
+        Homey.ManagerApi.realtime(event, details)
+    }
+
 }
 
 module.exports = App;
