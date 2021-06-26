@@ -3,6 +3,7 @@
     "name": {
         "en": "Ring"
     },
+    "brandColor": "#1A98D5",
     "version": "2.3.2",
     "compatibility": ">=3.2.0",
     "sdk": 2,
@@ -70,7 +71,7 @@
             "getable": true,
             "setable": true,
             "uiComponent": "toggle",
-            "uiQuickAction": true
+            "uiQuickAction": false
         }
     },
     "drivers": [
@@ -142,7 +143,11 @@
                 "small": "./drivers/stickupcam/assets/images/small.jpg"
             },
             "class": "sensor",
-            "capabilities": [ "alarm_generic", "alarm_motion", "measure_battery" ],
+            "capabilities": [ 
+                "alarm_generic", 
+                "alarm_motion", 
+                "measure_battery"
+            ],
             "energy": { "batteries": [ "INTERNAL" ] },
             "pair": [
                 {
