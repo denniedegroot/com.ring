@@ -142,7 +142,7 @@
                 "small": "./drivers/stickupcam/assets/images/small.jpg"
             },
             "class": "sensor",
-            "capabilities": [ "alarm_motion", "measure_battery" ],
+            "capabilities": [ "alarm_generic", "alarm_motion", "measure_battery" ],
             "energy": { "batteries": [ "INTERNAL" ] },
             "pair": [
                 {
@@ -177,6 +177,51 @@
                         "title": {
                             "en": "image"
                         }
+                    }
+                ]
+            },
+            {
+                "id": "ring_location_mode_changed_generic",
+                "title": {
+                    "en": "A location mode changed",
+                    "nl": "De status van een locatie is verandert"
+                },
+                "titleFormatted": {
+                    "en": "The mode for [[location]] changed",
+                    "nl": "De mode van [[location]] is verandert"
+                },                
+                "args": [
+                    {
+                        "name":"location",
+                        "title":{
+                            "en": "Location",
+                            "nl": "Locatie"
+                        },
+                        "type": "autocomplete",
+                        "placeholder": {
+                          "en": "NOTE: You must have a location setup in Ring",
+                          "nl": "LET OP: Er moet een locatie bekend zijn in Ring"
+                        }
+                    }
+                ],
+                "tokens": [
+                    {
+                        "title":{
+                            "en": "Previous mode",
+                            "nl": "Vorige mode"
+                        },
+                        "name": "oldmode",
+                        "type": "string",
+                        "example": "home"
+                    },
+                    {
+                        "title":{
+                            "en": "New mode",
+                            "nl": "Nieuwe mode"
+                        },
+                        "name": "mode",
+                        "type": "string",
+                        "example": "armed"
                     }
                 ]
             }
@@ -325,7 +370,56 @@
                         "filter": "driver_id=stickupcam"
                     }
                 ]
-            }
+            },
+            {
+                "id": "change_location_mode",
+                "title": {
+                    "en": "Change the mode for a location",
+                    "nl": "Verander modus voor een locatie"
+                },
+                "titleFormatted": {
+                  "en": "Change the mode for [[location]] to [[mode]]",
+                  "nl": "Verander modus voor [[location]] naar [[mode]]"
+                },
+                "args": [
+                  {
+                    "title":{
+                        "en": "Location",
+                        "nl": "Locatie"
+                    },
+                    "name": "location",
+                    "type": "autocomplete",
+                    "placeholder": {
+                      "en": "NOTE: You must have a location setup in Ring",
+                      "nl": "LET OP: Er moet een locatie bekend zijn in Ring"
+                    }
+                  },
+                  {
+                    "name": "mode",
+                    "type": "dropdown",
+                    "values": [
+                        {
+                          "id": "home",
+                          "label": {
+                            "en": "Home"
+                          }
+                        },
+                        {
+                          "id": "disarmed",
+                          "label": {
+                            "en": "Disarmed"
+                          }
+                        },
+                        {
+                          "id": "away",
+                          "label": {
+                            "en": "Away"
+                          }
+                        }
+                      ]
+                  }
+                ]
+              }
         ],
         "conditions": [
             {
@@ -341,7 +435,56 @@
                       "filter": "driver_id=stickupcam"
                   }
               ]
-            }
+            },
+            {
+                "id": "ring_location_mode_active",
+                "title": {
+                    "en": "A location mode is...",
+                    "nl": "De status van een locatie is ..."
+                },
+                "titleFormatted": {
+                    "en": "The mode for [[location]] !{{is|isn't}} [[mode]]",
+                    "nl": "De mode van [[location]] !{{is|is niet}} [[mode]]"
+                },                
+                "args": [
+                    {
+                        "name":"location",
+                        "title":{
+                            "en": "Location",
+                            "nl": "Locatie"
+                        },
+                        "type": "autocomplete",
+                        "placeholder": {
+                          "en": "NOTE: You must have a location setup in Ring",
+                          "nl": "LET OP: Er moet een locatie bekend zijn in Ring"
+                        }
+                    },
+                    {
+                      "name": "mode",
+                      "type": "dropdown",
+                      "values": [
+                          {
+                            "id": "home",
+                            "label": {
+                              "en": "Home"
+                            }
+                          },
+                          {
+                            "id": "disarmed",
+                            "label": {
+                              "en": "Disarmed"
+                            }
+                          },
+                          {
+                            "id": "away",
+                            "label": {
+                              "en": "Away"
+                            }
+                          }
+                        ]
+                    }
+                ]
+            }            
         ]
     }
 }
