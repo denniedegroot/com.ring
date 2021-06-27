@@ -50,8 +50,10 @@ class DeviceStickUpCam extends Device {
 
     _enableSirenCapability(device_data)
     {
+
         if(device_data.hasOwnProperty('siren_status'))
         {
+            console.log("device has a siren, enable siren related features");
             //Adding new capabilities
             if(!this.hasCapability("siren"))
             {
@@ -60,6 +62,13 @@ class DeviceStickUpCam extends Device {
                     this.registerCapabilityListener('siren', this.onCapabilitySiren.bind(this));
                 }.bind(this));
             }
+            if(!this.hasCapability("alarm_generic"))
+            {
+                console.log('this stickup camera has a siren, so use it to detect a Alarm');
+                this.addCapability("alarm_generic");
+            } 
+        } else {
+            console.log('device has no siren, ignore siren related features');
         }
     }
 
@@ -125,8 +134,8 @@ class DeviceStickUpCam extends Device {
                 return;
 
             //console.log(JSON.stringify(device_data.features));
-            this._enableLightCapability(this.getData());
-            this._enableSirenCapability(this.getData());
+            this._enableLightCapability(device_data);
+            this._enableSirenCapability(device_data);
     
 
             if(this.hasCapability("flood_light"))
@@ -142,11 +151,14 @@ class DeviceStickUpCam extends Device {
 
             if(this.hasCapability("siren"))
             {
-                console.log('siren status:'+JSON.stringify(device_data.siren_status));
+                console.log('siren status: '+JSON.stringify(device_data.siren_status));
                 let siren=false;
-                if(device_data.siren_status.duration>0)
+                if(device_data.siren_status.seconds_remaining>0)
                     siren=true;
                 this.setCapabilityValue('siren', siren).catch(error => {
+                    this.error(error);
+                });
+                this.setCapabilityValue('alarm_generic', siren).catch(error => {
                     this.error(error);
                 });
             }
