@@ -49,5 +49,8 @@
   },
   "2.3.2": {
     "en": "Added realtime event for Ring security app"
+  },
+  "2.3.3": {
+    "en": "Add location modes and fix unhandled rejection"
   }
 }

@@ -1,495 +1,519 @@
 {
-    "id": "com.amazon.ring",
-    "name": {
-        "en": "Ring"
-    },
-    "brandColor": "#1A98D5",
-    "version": "2.3.2",
-    "compatibility": ">=3.2.0",
-    "sdk": 2,
-    "author": {
+  "id": "com.amazon.ring",
+  "name": {
+    "en": "Ring"
+  },
+  "brandColor": "#1A98D5",
+  "version": "2.3.3",
+  "compatibility": ">=3.2.0",
+  "sdk": 2,
+  "author": {
+    "name": "Dennie de Groot",
+    "email": "mail@denniedegroot.nl",
+    "website": "https://denniedegroot.nl"
+  },
+  "contributors": {
+    "developers": [
+      {
         "name": "Dennie de Groot",
         "email": "mail@denniedegroot.nl",
         "website": "https://denniedegroot.nl"
-    },
-    "contributors": {
-        "developers": [
-            {
-                "name": "Dennie de Groot",
-                "email": "mail@denniedegroot.nl",
-                "website": "https://denniedegroot.nl"
-            },
-            {
-                "name": "Kaoh",
-                "email": "kaoh@kaoh.nl"
-            },
-            {
-                "name": "tokreutz",
-                "email": "tor.kreutzer@gmail.com"
-            }
-        ]
-    },
-    "contributing": {
-        "donate": {
-            "paypal": {
-                "username": "denniedegroot"
-            }
-        }
-    },
-    "bugs": {
-        "url": "https://github.com/denniedegroot/com.ring/issues"
-    },
-    "source": "https://github.com/denniedegroot/com.ring",
-    "description": {
-        "en": "Ring support for Homey",
-        "nl": "Ring ondersteuning voor Homey"
-    },
-    "images": {
-        "large": "./assets/images/large.jpg",
-        "small": "./assets/images/small.jpg"
-    },
-    "category": "appliances",
-    "athomForumDiscussionId": 4789,
-    "capabilities": {
-        "flood_light": {
-            "type": "boolean",
-            "title": {
-              "en": "Flood light",
-              "nl": "Schijnwerper"
-            },
-            "getable": true,
-            "setable": true,
-            "uiComponent": "toggle",
-            "uiQuickAction": true
-        },
-        "siren": {
-            "type": "boolean",
-            "title": {
-                "en": "Siren",
-                "nl": "Sirene"
-            },
-            "getable": true,
-            "setable": true,
-            "uiComponent": "toggle",
-            "uiQuickAction": false
-        }
-    },
-    "drivers": [
-        {
-            "id": "doorbell",
-            "name": {
-                "en": "Video Doorbell",
-                "nl": "Video Doorbell"
-            },
-            "images": {
-                "large": "./drivers/doorbell/assets/images/large.jpg",
-                "small": "./drivers/doorbell/assets/images/small.jpg"
-            },
-            "class": "sensor",
-            "capabilities": [ "alarm_generic", "alarm_motion", "measure_battery" ],
-            "energy": { "batteries": [ "INTERNAL" ] },
-            "pair": [
-                {
-                    "id": "start"
-                },
-                {
-                    "id": "list_devices",
-                    "template": "list_devices",
-                    "navigation": {
-                        "next": "add_devices"
-                    }
-                },
-                {
-                    "id": "add_devices",
-                    "template": "add_devices"
-                }
-            ]
-        }, {
-            "id": "chime",
-            "name": {
-                "en": "Chime",
-                "nl": "Chime"
-            },
-            "images": {
-                "large": "./drivers/chime/assets/images/large.jpg",
-                "small": "./drivers/chime/assets/images/small.jpg"
-            },
-            "class": "sensor",
-            "capabilities": [],
-            "pair": [
-                {
-                    "id": "start"
-                },
-                {
-                    "id": "list_devices",
-                    "template": "list_devices",
-                    "navigation": {
-                        "next": "add_devices"
-                    }
-                },
-                {
-                    "id": "add_devices",
-                    "template": "add_devices"
-                }
-            ]
-        }, {
-            "id": "stickupcam",
-            "name": {
-                "en": "Stick Up Cam",
-                "nl": "Stick Up Cam"
-            },
-            "images": {
-                "large": "./drivers/stickupcam/assets/images/large.jpg",
-                "small": "./drivers/stickupcam/assets/images/small.jpg"
-            },
-            "class": "sensor",
-            "capabilities": [ 
-                "alarm_generic", 
-                "alarm_motion", 
-                "measure_battery"
-            ],
-            "energy": { "batteries": [ "INTERNAL" ] },
-            "pair": [
-                {
-                    "id": "start"
-                },
-                {
-                    "id": "list_devices",
-                    "template": "list_devices",
-                    "navigation": {
-                        "next": "add_devices"
-                    }
-                },
-                {
-                    "id": "add_devices",
-                    "template": "add_devices"
-                }
-            ]
-        }
-    ],
-    "flow": {
-        "triggers": [
-            {
-                "id": "ring_snapshot_received",
-                "title": {
-                    "en": "Snapshot is grabbed",
-                    "nl": "Snapshot is opgehaald"
-                },
-                "tokens": [
-                    {
-                        "name": "ring_image",
-                        "type": "image",
-                        "title": {
-                            "en": "image"
-                        }
-                    }
-                ]
-            },
-            {
-                "id": "ring_location_mode_changed_generic",
-                "title": {
-                    "en": "A location mode changed",
-                    "nl": "De status van een locatie is verandert"
-                },
-                "titleFormatted": {
-                    "en": "The mode for [[location]] changed",
-                    "nl": "De mode van [[location]] is verandert"
-                },                
-                "args": [
-                    {
-                        "name":"location",
-                        "title":{
-                            "en": "Location",
-                            "nl": "Locatie"
-                        },
-                        "type": "autocomplete",
-                        "placeholder": {
-                          "en": "NOTE: You must have a location setup in Ring",
-                          "nl": "LET OP: Er moet een locatie bekend zijn in Ring"
-                        }
-                    }
-                ],
-                "tokens": [
-                    {
-                        "title":{
-                            "en": "Previous mode",
-                            "nl": "Vorige mode"
-                        },
-                        "name": "oldmode",
-                        "type": "string",
-                        "example": "home"
-                    },
-                    {
-                        "title":{
-                            "en": "New mode",
-                            "nl": "Nieuwe mode"
-                        },
-                        "name": "mode",
-                        "type": "string",
-                        "example": "armed"
-                    }
-                ]
-            }
-        ],
-        "actions": [
-            {
-                "id": "ring_chime",
-                "title": {
-                    "en": "Ring Chime",
-                    "nl": "Ring Chime"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=chime"
-                    }
-                ]
-            }, {
-                "id": "ring_grab_snapshot",
-                "title": {
-                    "en": "Grab current snapshot",
-                    "nl": "Haal huidige snapshot op"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=doorbell"
-                    }
-                ]
-            }, {
-                "id": "doorbell_enable_motion",
-                "title": {
-                    "en": "Enable motion detection",
-                    "nl": "Schakel bewegingsdetectie in"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=doorbell"
-                    }
-                ]
-            }, {
-                "id": "doorbell_disable_motion",
-                "title": {
-                    "en": "Disable motion detection",
-                    "nl": "Schakel bewegingsdetectie uit"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=doorbell"
-                    }
-                ]
-            }, {
-                "id": "stickupcam_grab_snapshot",
-                "title": {
-                    "en": "Grab current snapshot",
-                    "nl": "Haal huidige snapshot op"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=stickupcam"
-                    }
-                ]
-            }, {
-                "id": "stickupcam_enable_motion",
-                "title": {
-                    "en": "Enable motion detection",
-                    "nl": "Schakel bewegingsdetectie in"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=stickupcam"
-                    }
-                ]
-            }, {
-                "id": "stickupcam_disable_motion",
-                "title": {
-                    "en": "Disable motion detection",
-                    "nl": "Schakel bewegingsdetectie uit"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=stickupcam"
-                    }
-                ]
-            }, {
-                "id": "stickupcam_light_on",
-                "title": {
-                    "en": "Turn the floodlight on",
-                    "nl": "Zet de schijnwerper aan"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=stickupcam"
-                    }
-                ]
-            }, {
-                "id": "stickupcam_light_off",
-                "title": {
-                    "en": "Turn the floodlight off",
-                    "nl": "Zet de schijnwerper uit"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=stickupcam"
-                    }
-                ]
-            }, {
-                "id": "stickupcam_siren_off",
-                "title": {
-                    "en": "Turn the siren off",
-                    "nl": "Zet de sirene uit"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=stickupcam"
-                    }
-                ]
-            }, {
-                "id": "stickupcam_siren_on",
-                "title": {
-                    "en": "Turn the siren on",
-                    "nl": "Zet de siren aan"
-                },
-                "args": [
-                    {
-                        "name": "device",
-                        "type": "device",
-                        "filter": "driver_id=stickupcam"
-                    }
-                ]
-            },
-            {
-                "id": "change_location_mode",
-                "title": {
-                    "en": "Change the mode for a location",
-                    "nl": "Verander modus voor een locatie"
-                },
-                "titleFormatted": {
-                  "en": "Change the mode for [[location]] to [[mode]]",
-                  "nl": "Verander modus voor [[location]] naar [[mode]]"
-                },
-                "args": [
-                  {
-                    "title":{
-                        "en": "Location",
-                        "nl": "Locatie"
-                    },
-                    "name": "location",
-                    "type": "autocomplete",
-                    "placeholder": {
-                      "en": "NOTE: You must have a location setup in Ring",
-                      "nl": "LET OP: Er moet een locatie bekend zijn in Ring"
-                    }
-                  },
-                  {
-                    "name": "mode",
-                    "type": "dropdown",
-                    "values": [
-                        {
-                          "id": "home",
-                          "label": {
-                            "en": "Home"
-                          }
-                        },
-                        {
-                          "id": "disarmed",
-                          "label": {
-                            "en": "Disarmed"
-                          }
-                        },
-                        {
-                          "id": "away",
-                          "label": {
-                            "en": "Away"
-                          }
-                        }
-                      ]
-                  }
-                ]
-              }
-        ],
-        "conditions": [
-            {
-              "id": "stickupcam_floodLight_on",
-              "title": {
-                "en": "The floodlight {{is|isn't}} on",
-                "nl": "De schijnwerper {{is|is niet}} aan"
-              },
-              "args": [
-                  {
-                      "name": "device",
-                      "type": "device",
-                      "filter": "driver_id=stickupcam"
-                  }
-              ]
-            },
-            {
-                "id": "ring_location_mode_active",
-                "title": {
-                    "en": "A location mode is...",
-                    "nl": "De status van een locatie is ..."
-                },
-                "titleFormatted": {
-                    "en": "The mode for [[location]] !{{is|isn't}} [[mode]]",
-                    "nl": "De mode van [[location]] !{{is|is niet}} [[mode]]"
-                },                
-                "args": [
-                    {
-                        "name":"location",
-                        "title":{
-                            "en": "Location",
-                            "nl": "Locatie"
-                        },
-                        "type": "autocomplete",
-                        "placeholder": {
-                          "en": "NOTE: You must have a location setup in Ring",
-                          "nl": "LET OP: Er moet een locatie bekend zijn in Ring"
-                        }
-                    },
-                    {
-                      "name": "mode",
-                      "type": "dropdown",
-                      "values": [
-                          {
-                            "id": "home",
-                            "label": {
-                              "en": "Home"
-                            }
-                          },
-                          {
-                            "id": "disarmed",
-                            "label": {
-                              "en": "Disarmed"
-                            }
-                          },
-                          {
-                            "id": "away",
-                            "label": {
-                              "en": "Away"
-                            }
-                          }
-                        ]
-                    }
-                ]
-            }            
-        ]
+      },
+      {
+        "name": "Kaoh",
+        "email": "kaoh@kaoh.nl"
+      },
+      {
+        "name": "tokreutz",
+        "email": "tor.kreutzer@gmail.com"
+      }
+    ]
+  },
+  "contributing": {
+    "donate": {
+      "paypal": {
+        "username": "denniedegroot"
+      }
     }
+  },
+  "bugs": {
+    "url": "https://github.com/denniedegroot/com.ring/issues"
+  },
+  "source": "https://github.com/denniedegroot/com.ring",
+  "description": {
+    "en": "Ring support for Homey",
+    "nl": "Ring ondersteuning voor Homey"
+  },
+  "images": {
+    "large": "./assets/images/large.jpg",
+    "small": "./assets/images/small.jpg"
+  },
+  "category": "appliances",
+  "athomForumDiscussionId": 4789,
+  "capabilities": {
+    "flood_light": {
+      "type": "boolean",
+      "title": {
+        "en": "Flood light",
+        "nl": "Schijnwerper"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle",
+      "uiQuickAction": true
+    },
+    "siren": {
+      "type": "boolean",
+      "title": {
+        "en": "Siren",
+        "nl": "Sirene"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle",
+      "uiQuickAction": false
+    }
+  },
+  "drivers": [
+    {
+      "id": "doorbell",
+      "name": {
+        "en": "Video Doorbell",
+        "nl": "Video Doorbell"
+      },
+      "images": {
+        "large": "./drivers/doorbell/assets/images/large.jpg",
+        "small": "./drivers/doorbell/assets/images/small.jpg"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_generic",
+        "alarm_motion",
+        "measure_battery"
+      ],
+      "energy": {
+        "batteries": [
+          "INTERNAL"
+        ]
+      },
+      "pair": [
+        {
+          "id": "start"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ]
+    },
+    {
+      "id": "chime",
+      "name": {
+        "en": "Chime",
+        "nl": "Chime"
+      },
+      "images": {
+        "large": "./drivers/chime/assets/images/large.jpg",
+        "small": "./drivers/chime/assets/images/small.jpg"
+      },
+      "class": "sensor",
+      "capabilities": [],
+      "pair": [
+        {
+          "id": "start"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ]
+    },
+    {
+      "id": "stickupcam",
+      "name": {
+        "en": "Stick Up Cam",
+        "nl": "Stick Up Cam"
+      },
+      "images": {
+        "large": "./drivers/stickupcam/assets/images/large.jpg",
+        "small": "./drivers/stickupcam/assets/images/small.jpg"
+      },
+      "class": "sensor",
+      "capabilities": [
+        "alarm_generic",
+        "alarm_motion",
+        "measure_battery"
+      ],
+      "energy": {
+        "batteries": [
+          "INTERNAL"
+        ]
+      },
+      "pair": [
+        {
+          "id": "start"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ]
+    }
+  ],
+  "flow": {
+    "triggers": [
+      {
+        "id": "ring_snapshot_received",
+        "title": {
+          "en": "Snapshot is grabbed",
+          "nl": "Snapshot is opgehaald"
+        },
+        "tokens": [
+          {
+            "name": "ring_image",
+            "type": "image",
+            "title": {
+              "en": "image"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ring_location_mode_changed_generic",
+        "title": {
+          "en": "A location mode changed",
+          "nl": "De status van een locatie is verandert"
+        },
+        "titleFormatted": {
+          "en": "The mode for [[location]] changed",
+          "nl": "De mode van [[location]] is verandert"
+        },
+        "args": [
+          {
+            "name": "location",
+            "title": {
+              "en": "Location",
+              "nl": "Locatie"
+            },
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "NOTE: You must have a location setup in Ring",
+              "nl": "LET OP: Er moet een locatie bekend zijn in Ring"
+            }
+          }
+        ],
+        "tokens": [
+          {
+            "title": {
+              "en": "Previous mode",
+              "nl": "Vorige mode"
+            },
+            "name": "oldmode",
+            "type": "string",
+            "example": "home"
+          },
+          {
+            "title": {
+              "en": "New mode",
+              "nl": "Nieuwe mode"
+            },
+            "name": "mode",
+            "type": "string",
+            "example": "armed"
+          }
+        ]
+      }
+    ],
+    "actions": [
+      {
+        "id": "ring_chime",
+        "title": {
+          "en": "Ring Chime",
+          "nl": "Ring Chime"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=chime"
+          }
+        ]
+      },
+      {
+        "id": "ring_grab_snapshot",
+        "title": {
+          "en": "Grab current snapshot",
+          "nl": "Haal huidige snapshot op"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=doorbell"
+          }
+        ]
+      },
+      {
+        "id": "doorbell_enable_motion",
+        "title": {
+          "en": "Enable motion detection",
+          "nl": "Schakel bewegingsdetectie in"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=doorbell"
+          }
+        ]
+      },
+      {
+        "id": "doorbell_disable_motion",
+        "title": {
+          "en": "Disable motion detection",
+          "nl": "Schakel bewegingsdetectie uit"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=doorbell"
+          }
+        ]
+      },
+      {
+        "id": "stickupcam_grab_snapshot",
+        "title": {
+          "en": "Grab current snapshot",
+          "nl": "Haal huidige snapshot op"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=stickupcam"
+          }
+        ]
+      },
+      {
+        "id": "stickupcam_enable_motion",
+        "title": {
+          "en": "Enable motion detection",
+          "nl": "Schakel bewegingsdetectie in"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=stickupcam"
+          }
+        ]
+      },
+      {
+        "id": "stickupcam_disable_motion",
+        "title": {
+          "en": "Disable motion detection",
+          "nl": "Schakel bewegingsdetectie uit"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=stickupcam"
+          }
+        ]
+      },
+      {
+        "id": "stickupcam_light_on",
+        "title": {
+          "en": "Turn the floodlight on",
+          "nl": "Zet de schijnwerper aan"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=stickupcam"
+          }
+        ]
+      },
+      {
+        "id": "stickupcam_light_off",
+        "title": {
+          "en": "Turn the floodlight off",
+          "nl": "Zet de schijnwerper uit"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=stickupcam"
+          }
+        ]
+      },
+      {
+        "id": "stickupcam_siren_off",
+        "title": {
+          "en": "Turn the siren off",
+          "nl": "Zet de sirene uit"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=stickupcam"
+          }
+        ]
+      },
+      {
+        "id": "stickupcam_siren_on",
+        "title": {
+          "en": "Turn the siren on",
+          "nl": "Zet de siren aan"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=stickupcam"
+          }
+        ]
+      },
+      {
+        "id": "change_location_mode",
+        "title": {
+          "en": "Change the mode for a location",
+          "nl": "Verander modus voor een locatie"
+        },
+        "titleFormatted": {
+          "en": "Change the mode for [[location]] to [[mode]]",
+          "nl": "Verander modus voor [[location]] naar [[mode]]"
+        },
+        "args": [
+          {
+            "title": {
+              "en": "Location",
+              "nl": "Locatie"
+            },
+            "name": "location",
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "NOTE: You must have a location setup in Ring",
+              "nl": "LET OP: Er moet een locatie bekend zijn in Ring"
+            }
+          },
+          {
+            "name": "mode",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "home",
+                "label": {
+                  "en": "Home"
+                }
+              },
+              {
+                "id": "disarmed",
+                "label": {
+                  "en": "Disarmed"
+                }
+              },
+              {
+                "id": "away",
+                "label": {
+                  "en": "Away"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "conditions": [
+      {
+        "id": "stickupcam_floodLight_on",
+        "title": {
+          "en": "The floodlight {{is|isn't}} on",
+          "nl": "De schijnwerper {{is|is niet}} aan"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=stickupcam"
+          }
+        ]
+      },
+      {
+        "id": "ring_location_mode_active",
+        "title": {
+          "en": "A location mode is...",
+          "nl": "De status van een locatie is ..."
+        },
+        "titleFormatted": {
+          "en": "The mode for [[location]] !{{is|isn't}} [[mode]]",
+          "nl": "De mode van [[location]] !{{is|is niet}} [[mode]]"
+        },
+        "args": [
+          {
+            "name": "location",
+            "title": {
+              "en": "Location",
+              "nl": "Locatie"
+            },
+            "type": "autocomplete",
+            "placeholder": {
+              "en": "NOTE: You must have a location setup in Ring",
+              "nl": "LET OP: Er moet een locatie bekend zijn in Ring"
+            }
+          },
+          {
+            "name": "mode",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "home",
+                "label": {
+                  "en": "Home"
+                }
+              },
+              {
+                "id": "disarmed",
+                "label": {
+                  "en": "Disarmed"
+                }
+              },
+              {
+                "id": "away",
+                "label": {
+                  "en": "Away"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
 }
