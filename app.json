@@ -4,7 +4,7 @@
     "en": "Ring"
   },
   "brandColor": "#1A98D5",
-  "version": "2.3.3",
+  "version": "2.3.4",
   "compatibility": ">=3.2.0",
   "sdk": 2,
   "author": {
@@ -26,6 +26,10 @@
       {
         "name": "tokreutz",
         "email": "tor.kreutzer@gmail.com"
+      },
+      {
+        "name": "Danee de Kruyff",
+        "email": "daneedekruyff@outlook.com"
       }
     ]
   },

@@ -18,6 +18,10 @@ class App extends Homey.App {
     onInit() {
         console.log(`${Homey.manifest.id} running...`);
         this.lastLocationModes = [];
+
+        Homey.ManagerSettings.set('authenticationStatus', "unknown");
+        Homey.ManagerSettings.set('authenticationError', "unknown");
+        
         this._api = new api();
 
         this._api.on('refresh_device', this._syncDevice.bind(this));

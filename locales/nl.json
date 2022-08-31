@@ -1,20 +1,26 @@
 {
     "pair": {
-        "authorization": "Authenticeer met Ring",
-        "authorization_explanation": "Ga naar instellingen om Homey toegang tot je Ring apparaten te geven."
+        "intro": "Authenticeer met Ring",
+        "auth": {
+            "header": "Meld aan met je Ring account",
+            "warning": "(Twee-Factor authenticatie is vereist, dit moet ingeschakeld zijn op je Ring account!)",
+            "user": "E-mail",
+            "pass": "wachtwoord",
+            "authenticate": "Authenticeer",
+            "token": "Vul de Twee-Factor code in",
+            "validatecode": "Autoriseer"
+        }
     },
     "settings": {
-        "title": "Ring Instellingen",
-        "intro": "Voordat Homey Ring producten kan toevoegen moet er autorisatie gegeven worden.",
+        "title": "Je Ring apparaten in Homey",
+        "intro": "Voordat je Ring apparaten in Homey kan gebruiken moet Homey geauthenticeerd zijn bij Ring. Authenticatie doe je bij het eerste Ring apparaat wat je toevoegd.",
+        "info": "Je kan de authenticatie status hieronder zien. Je kan de Trek authenticatie in knop gebruiken om de authentiatie van Homey bij Ring in te trekken.",
         "auth": {
-            "header": "Ring Autorisatie Gegevens",
-            "warning": "Two-Factor Authenticatie is vereist, dit moet ingeschakeld zijn op je Ring account!",
-            "user": "Email",
-            "pass": "Wachtwoord",
-            "authenticate": "Autoriseer",
-            "revoke": "Verwijder autorisatie",
-            "token": "Enter MFA code welke je ontvangen hebt",
-            "validatecode": "Authoriseren"
+            "header": "Homey Authenticatie Status",
+            "result": "Authenticatie resultaat:",
+            "error": "Fout:",
+            "action": "Je moet (opnieuw) authenticeren via de wizard om een apparaat toe te voegen",
+            "revoke": "Trek authenticatie in"
         }
-    }
+    }    
 }
