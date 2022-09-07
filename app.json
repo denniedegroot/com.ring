@@ -115,6 +115,39 @@
           "id": "add_devices",
           "template": "add_devices"
         }
+      ],
+      "repair": [
+        {
+          "id": "start"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
+        }
+      ],
+      "settings": [
+        {
+          "type": "group",
+          "label": {
+            "en": "Homey integration settings"
+          },
+          "children": [
+            {
+              "id": "useMotionDetection",
+              "type": "checkbox",
+              "value": true,
+              "label": {
+                "en": "Use Motion Detection"
+              },
+              "hint": {
+                "en": "You can use your Ring Doorbell as a Motion Detector when you enable this settings. There are also flow action cards to enable and disable the motion detection dynamically."
+              }
+            }
+          ]
+        }
       ]
     },
     {
@@ -143,6 +176,18 @@
         {
           "id": "add_devices",
           "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "start"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
         }
       ]
     },
@@ -181,6 +226,18 @@
         {
           "id": "add_devices",
           "template": "add_devices"
+        }
+      ],
+      "repair": [
+        {
+          "id": "start"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices"
+          }
         }
       ]
     }
