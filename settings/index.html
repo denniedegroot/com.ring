@@ -7,12 +7,12 @@
 
     <h1 data-i18n="settings.title"></h1>
     <p data-i18n="settings.intro"></p>
-    <p style='color: orange;' data-i18n="settings.auth.warning"></legend>
-
+    <p data-i18n="settings.info"></p>
+    
     <fieldset>
         <legend data-i18n="settings.auth.header"></legend>
 
-        <p id="error" style='color: red;'></p>
+        <p id="error"></p>
 
         <button id="settings-auth-revoke" data-i18n="settings.auth.revoke"></button>
     </fieldset>
@@ -21,19 +21,25 @@
         function onHomeyReady(Homey) {
             Homey.ready();
 
+            writeAuthenticationState();
 
             Homey.on('com.ring.status', function (data) {
                 if (data.state !== 'authenticated') {
-                    hideRevoke();
+                     hideRevoke();
                 } else {
-                    document.getElementById('error').innerHTML = '';
+                    
                 }
             });
 
-
             Homey.get('ringAccesstoken', function (err, data) {
                 if (!data) {
-                    hideRevoke();
+                    // hideRevoke();
+                }
+            });
+
+            Homey.on('settings.set', function (setting) {
+                if ( setting == 'authenticationStatus' || setting == 'authenticationError' ) {
+                    writeAuthenticationState()
                 }
             });
 
@@ -42,16 +48,43 @@
             });
         }
 
-        function hideRevoke()
+        async function hideRevoke()
         {
-            document.getElementById('error').innerHTML = 'Error: You need to authenticate this app from the add device wizard';
             document.getElementById('settings-auth-revoke').style.display = 'none';
+          
+        }
+
+        async function writeAuthenticationState() {
+            await Homey.get('authenticationStatus')
+                .then(async (result) => {
+                    if (result == "Authenticated") {
+                        this.htmlString = Homey.__("settings.auth.result") + "<br /><span style='color: green;'>"
+                        this.htmlString += result 
+                        this.htmlString += "<br /><br />"
+                        document.getElementById('error').innerHTML = this.htmlString;
+                        document.getElementById('settings-auth-revoke').style.display = '';
+                    } else {
+                        this.htmlString = Homey.__("settings.auth.result") + "<br /><span style='color: red;'>"                        
+                        this.htmlString += result
+                        this.htmlString += "</span><br />" + Homey.__("settings.auth.error") + "<br /><span style='color: red;'>"
+                        await Homey.get('authenticationError')
+                            .then((result) => {
+                            this.htmlString += result
+                        })
+                        this.htmlString += "</span><br /><br />" + Homey.__("settings.auth.action") + "<br /><br />"
+                        document.getElementById('error').innerHTML = this.htmlString;
+                        hideRevoke();
+                    }
+                })
         }
 
         function onRevokeAuth(Homey) {
             Homey.set('ringAccesstoken', null);
             Homey.set('ringBearer', null);
             Homey.set('ringRefreshToken', null);
+            Homey.set('authenticationStatus', 'Authentication Revoked');
+            Homey.set('authenticationError', "--");
+            writeAuthenticationState();
             hideRevoke();
         }
 

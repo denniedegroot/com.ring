@@ -1,31 +1,30 @@
 
-    <h1 data-i18n="settings.title"></h1>
-    <p data-i18n="settings.intro"></p>
-    <p style='color: orange;' data-i18n="settings.auth.warning"></legend>
+    <p data-i18n="pair.intro"></p>
+    <p data-i18n="pair.auth.warning"></legend>
 
     <fieldset>
-        <legend data-i18n="settings.auth.header"></legend>
+        <legend data-i18n="pair.auth.header"></legend>
 
         <div id="settings-auth">
             <p id="error" style='color: red;'></p>
 
             <div class="field row" id="auth-row-user">
-                <label class="form-label" for="settings-auth-user" data-i18n="settings.auth.user"></label>
+                <label class="form-label" for="settings-auth-user" data-i18n="pair.auth.user"></label>
                 <input class="form-input" id="settings-auth-user" data-i18n-placeholder="" type="text" value=""/>
             </div>
 
             <div class="field row" id="auth-row-pass">
-                <label class="form-label" for="settings-auth-pass" data-i18n="settings.auth.pass"></label>
+                <label class="form-label" for="settings-auth-pass" data-i18n="pair.auth.pass"></label>
                 <input class="form-input" id="settings-auth-pass" data-i18n-placeholder="" type="password" value=""/>
             </div>
 
             <div class="field row" id="auth-row-code" style="display: none;">
-                <label class="form-label" for="settings-auth-token" data-i18n="settings.auth.token"></label>
+                <label class="form-label" for="settings-auth-token" data-i18n="pair.auth.token"></label>
                 <input class="form-input" id="settings-auth-token" data-i18n-placeholder="" type="text" value=""/>
             </div>
-
-            <button id="settings-auth-authenticate" data-i18n="settings.auth.authenticate"></button>
-            <button id="settings-auth-validatecode" data-i18n="settings.auth.validatecode" style="display: none;"></button>
+            <br />
+            <button id="settings-auth-authenticate" data-i18n="pair.auth.authenticate"></button>
+            <button id="settings-auth-validatecode" data-i18n="pair.auth.validatecode" style="display: none;"></button>
         </div>
 
     </fieldset>
@@ -75,6 +74,7 @@
             document.getElementById('auth-row-user').style.display = 'none';
             document.getElementById('auth-row-pass').style.display = 'none';
             document.getElementById('settings-auth-authenticate').style.display = 'none';
+            document.getElementById('error').innerHTML = '';
             document.getElementById('auth-row-code').style.display = 'block';
             document.getElementById('settings-auth-validatecode').style.display = 'block';
         }

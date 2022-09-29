@@ -1,20 +1,26 @@
 {
     "pair": {
-        "authorization": "Authenticate with Ring",
-        "authorization_explanation": "Please go to settings and give Homey access to your Ring devices."
-    },
-    "settings": {
-        "title": "Ring Settings",
-        "intro": "Before Homey can add Ring products we need authentication.",
+        "intro": "To add a Ring device Homey needs to be authenticated at Ring, please logon with your Ring account to do this.",
         "auth": {
-            "header": "Ring Authentication Credentials",
-            "warning": "Two-Factor Authentication is required, you must enable this on your Ring account!",
+            "header": "Log on with your Ring account",
+            "warning": "(Two-Factor Authentication is mandatory, this must enabled at your Ring account!)",
             "user": "Email",
             "pass": "Password",
             "authenticate": "Authenticate",
-            "revoke": "Revoke Authentication",
             "token": "Enter MFA code you received",
             "validatecode": "Authorize"
+        }
+    },
+    "settings": {
+        "title": "Your Ring devices in Homey",
+        "intro": "To use your Ring devices in Homey, Homey must be authenticated at Ring. Authentication is done when adding your first Ring device to Homey.",
+        "info": "You can see the authentication state below.You can use the Revoke Authentication button to revoke Homeys authentication at Ring.",
+        "auth": {
+            "header": "Homey Authentication State",
+            "result": "Authentication result:",
+            "error": "Error:",
+            "action": "You need to (re-)authenticate this app from the add device wizard",
+            "revoke": "Revoke Authentication"
         }
     }
 }

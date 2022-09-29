@@ -44,6 +44,7 @@ class DeviceDoorbell extends Device {
                     let snapshot = new Duplex();
                     snapshot.push(null);
                     return snapshot.pipe(stream);
+                    // This results in invalid_content_type
                 }
             })
         })
@@ -66,6 +67,7 @@ class DeviceDoorbell extends Device {
                     });
 
                     Homey.app.logRealtime('doorbell', 'ding');
+                    console.log('Realtime event emitted for ding');
 
                     clearTimeout(this.device.timer.ding);
 
@@ -96,9 +98,17 @@ class DeviceDoorbell extends Device {
     }
 
     _syncDevices(data) {
-        this.log('_syncDevices', data);
+        // this.log('_syncDevices', data);
 
         data.doorbots.forEach((device_data) => {
+            // console.log(device_data.settings);
+            // console.log(device_data.settings.motion_detection_enabled);
+            // console.log(device_data.settings.lite_24x7.resolution_p); Snapshot size setting?
+            // console.log(device_data.features);
+            // console.log(device_data.alerts);
+            // console.log(device_data.health);
+            // console.log(device_data.owner);
+
             if (device_data.id !== this.getData().id)
                 return;
 
@@ -110,7 +120,25 @@ class DeviceDoorbell extends Device {
             this.setCapabilityValue('measure_battery', battery).catch(error => {
                 this.error(error);
             });
+
+            this.setSettings({
+                useMotionDetection: device_data.settings.motion_detection_enabled,
+            })
+                .catch( this.error )
         });
+    }
+
+    async onSettings( oldSettings, newSettings, changedKeys ) {
+        changedKeys.forEach((changedSetting) => {
+            if (changedSetting == 'useMotionDetection') {
+                if (newSettings.useMotionDetection) {
+                    this.enableMotion(this._device)
+                } else {
+                    this.disableMotion(this._device)
+                }
+            }
+        })
+
     }
 
     grabImage(args, state) {

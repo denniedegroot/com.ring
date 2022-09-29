@@ -18,6 +18,7 @@ class App extends Homey.App {
     onInit() {
         console.log(`${Homey.manifest.id} running...`);
         this.lastLocationModes = [];
+        
         this._api = new api();
 
         this._api.on('refresh_device', this._syncDevice.bind(this));
@@ -83,6 +84,12 @@ class App extends Homey.App {
     logRealtime(event, details)
     {
         Homey.ManagerApi.realtime(event, details)
+        console.log('Realtime event emitted for ', event, details);
+    }
+
+    writeToTimeline(message) {
+        var notification = new Homey.Notification({ excerpt: message });
+        notification.register().catch(() => {});
     }
 
     _syncLocationMode(newLocationMode)
