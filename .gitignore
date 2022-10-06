@@ -1,6 +1,4 @@
 .DS_Store
 /build/
 /_information/
-
-# Added by Homey CLI
 /.homeybuild/

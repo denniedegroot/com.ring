@@ -55,5 +55,8 @@
   },
   "2.3.4": {
     "en": "Improved visibility authentication state"
+  },
+  "2.3.5": {
+    "en": "Fixed type in error handling"
   }
 }
